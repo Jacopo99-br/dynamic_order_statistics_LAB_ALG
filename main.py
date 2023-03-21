@@ -11,8 +11,8 @@ size=0
 
 n_struct_data=15  # creo 15 istanze per ogni struct data   #15
 n_times_plus=20 # numero di volte che aumento la dim di plus_dim  #20
-plus_dim=50 # di quanto aumento la dimensione       #300
-n_mis=30  # misuro 10 volte il tempo di os_select/rank per poi farne la media #30
+plus_dim=100 # di quanto aumento la dimensione       #300
+n_mis=15  # misuro 10 volte il tempo di os_select/rank per poi farne la media #30
 n_test=3
 
 #dati per numero di esecuzione/dimensione
@@ -218,5 +218,5 @@ def get_mid_result(arr,n,n_test):
 #     num=random.randint(0,10)
 #     tree.insert(num)
 
-# if __name__ == "__main__":
-#     main()
+if __name__ == "__main__":
+     main()

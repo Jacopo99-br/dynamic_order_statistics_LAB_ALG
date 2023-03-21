@@ -46,8 +46,6 @@ def OS_Select_list(arr,i):
     for value in arr:
         index+=1
         if i==index:
-            print(arr)
-            print(index)
             return value
         
 def OS_Rank_list(arr,target):
@@ -55,8 +53,6 @@ def OS_Rank_list(arr,target):
     for value in arr:
         index+=1
         if target==value:
-            print(arr)
-            print(index)
             return index
 
 
