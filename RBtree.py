@@ -170,7 +170,7 @@ def OS_SelectRB(x, i):
         return None
     r = x.left.size + 1
     if i == r:
-        return x
+        return 
     elif i < r:
         return OS_SelectRB(x.left, i)
     else:
@@ -183,7 +183,7 @@ def OS_RankRB(tree,x):
         if y == y.parent.right:
             r = r + y.parent.left.size + 1
         y = y.parent
-    return r
+    return 
     
 
 

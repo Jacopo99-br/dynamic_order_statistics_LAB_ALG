@@ -46,14 +46,14 @@ def OS_Select_list(arr,i):
     for value in arr:
         index+=1
         if i==index:
-            return value
+            return
         
 def OS_Rank_list(arr,target):
     index=0
     for value in arr:
         index+=1
         if target==value:
-            return index
+            return 
 
 
 

@@ -30,7 +30,7 @@ def test_OS_Select(_list,_tree,_RBTree,i):
     times.append(end-start)
     #RB
     start=timer()
-    RB.OS_SelectRB(_RBTree.elements[0],i)
+    RB.OS_SelectRB(_RBTree.elements[0],i+1) #sennò andrebbe alla foglia che è None
     end=timer()
     times.append(end-start)
 
@@ -132,7 +132,7 @@ def main():
                 # print(randomRBNode.key)
                 # print(randomList)
 
-                Select_res=test_OS_Select(myList,tree,RBtree,ridx)
+                Select_res=test_OS_Select(myList,tree,RBtree,0) #inserisco il primo indice
                 Rank_res=test_OS_Rank(myList,tree,RBtree,randomList,randomTreeNode,randomRBNode)
 
                 misList.append(Select_res[0])
@@ -151,7 +151,7 @@ def main():
                 # print(randomRBNode.key)
                 # print(randomList)
 
-                Select_res=test_OS_Select(myList,tree,RBtree,ridx)
+                Select_res=test_OS_Select(myList,tree,RBtree,len(myList)-1) #ultimo indice
                 Rank_res=test_OS_Rank(myList,tree,RBtree,randomList,randomTreeNode,randomRBNode)
                 
 
