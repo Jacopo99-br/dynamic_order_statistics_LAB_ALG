@@ -11,88 +11,88 @@ fileRes=[ResList,ResTree,ResRB]
 
 legend=["standard","Min","Max"]
 
-# for l in range(0,3):
-#     fig=plt.figure(l+1)
-#     if l==0:
-#         currentFile=ResList
-#         name='List'
-#     if l==1:
-#         currentFile=ResTree
-#         name='Tree'
-#     if l==2:
-#         currentFile=ResRB
-#         name='RBTree'
+for l in range(0,3):
+    fig=plt.figure(l+1)
+    if l==0:
+        currentFile=ResList
+        name='List'
+    if l==1:
+        currentFile=ResTree
+        name='Tree'
+    if l==2:
+        currentFile=ResRB
+        name='RBTree'
 
-#     plt.style.use('ggplot')
+    plt.style.use('ggplot')
 
-#     x_ax=[]
-#     current=0
-#     for i in range(n_times_plus):
-#         current=current+plus_dim
-#         x_ax.append(current)
+    x_ax=[]
+    current=0
+    for i in range(n_times_plus):
+        current=current+plus_dim
+        x_ax.append(current)
 
-#     axes=x_ax
-#     plt.subplot(221)
-#     plt.title( name+' OS-Select')
-#     plt.xlabel('dimension')
-#     plt.ylabel('time')
+    axes=x_ax
+    plt.subplot(221)
+    plt.title( name+' OS-Select')
+    plt.xlabel('dimension')
+    plt.ylabel('time')
 
-#     for k in range(0,n_test):
-#         plt.plot(axes,[val[2*k] for val in currentFile])
+    for k in range(0,n_test):
+        plt.plot(axes,[val[2*k] for val in currentFile])
 
-#     plt.legend(legend)
-
-
-#     plt.subplot(222)
-#     plt.title( name+' OS-Rank')
-#     plt.xlabel('dimension')
-#     plt.ylabel('time')
-
-#     for k in range(0,n_test):
-#         plt.plot(axes,[val[(2*k)+1] for val in currentFile])
-
-#     plt.legend(legend)
-
-#     plt.savefig(f'GRAPHS/{name}.png')
-#     plt.clf()
-# # PER OGNI TEST FACCIO DELLE FIGURE IN CUI CONFRONTO LE DUE FUNZIONI SULLE STRUCT DIVERSE
+    plt.legend(legend)
 
 
-# legend=["List","Tree","RBTree"]
+    plt.subplot(222)
+    plt.title( name+' OS-Rank')
+    plt.xlabel('dimension')
+    plt.ylabel('time')
 
-# for i in range(0,n_test):
-#     fig=plt.figure(i+1)
-#     fig.tight_layout(pad=0.05)
-#     x_ax=[]
-#     current=0
-#     for j in range(n_times_plus):
-#         current=current+plus_dim
-#         x_ax.append(current)
+    for k in range(0,n_test):
+        plt.plot(axes,[val[(2*k)+1] for val in currentFile])
 
-#     axes=x_ax
-#     plt.subplot(221)
-#     plt.title(f'OS-Select test-{i+1}')
-#     plt.xlabel('dimension')
-#     plt.ylabel('time')
+    plt.legend(legend)
 
-#     for res in fileRes: #scorre per i risultati
-#         plt.plot(axes,[val[i*2] for val in res])
+    plt.savefig(f'GRAPHS/{name}.png')
+    plt.clf()
+# PER OGNI TEST FACCIO DELLE FIGURE IN CUI CONFRONTO LE DUE FUNZIONI SULLE STRUCT DIVERSE
+
+
+legend=["List","Tree","RBTree"]
+
+for i in range(0,n_test):
+    fig=plt.figure(i+1)
+    fig.tight_layout(pad=0.05)
+    x_ax=[]
+    current=0
+    for j in range(n_times_plus):
+        current=current+plus_dim
+        x_ax.append(current)
+
+    axes=x_ax
+    plt.subplot(221)
+    plt.title(f'OS-Select test-{i+1}')
+    plt.xlabel('dimension')
+    plt.ylabel('time')
+
+    for res in fileRes: #scorre per i risultati
+        plt.plot(axes,[val[i*2] for val in res])
         
-#     plt.legend(legend)
+    plt.legend(legend)
 
     
 
-#     plt.subplot(222)
-#     plt.title(f'OS-Rank test-{i+1}')
-#     plt.xlabel('dimension')
-#     plt.ylabel('time')
+    plt.subplot(222)
+    plt.title(f'OS-Rank test-{i+1}')
+    plt.xlabel('dimension')
+    plt.ylabel('time')
 
-#     for res in fileRes: #scorre per i risultati
-#         plt.plot(axes,[val[(i*2)+1] for val in res])
+    for res in fileRes: #scorre per i risultati
+        plt.plot(axes,[val[(i*2)+1] for val in res])
         
-#     plt.legend(legend)
-#     plt.savefig(f'GRAPHS/test-{i+1}.png')
-#     plt.clf()
+    plt.legend(legend)
+    plt.savefig(f'GRAPHS/test-{i+1}.png')
+    plt.clf()
 
 
 for i in range(0,n_test):
