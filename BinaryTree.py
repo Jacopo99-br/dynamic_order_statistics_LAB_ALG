@@ -1,4 +1,5 @@
 import random
+from collections import deque
 
 
 #GLOBAL
@@ -114,12 +115,38 @@ class BinaryTree():
 
     
 
-def OS_Rank(node,i): #sbagliato , torna il puntatore al valore uguale a i
+def OS_Rank(node,i): 
     global index
     global select
     global value
+    index=0
+     # create an empty stack
+    stack = deque()
+ 
+    # start from the root node (set current node to the root node)
+    curr = node
+ 
+    # if the current node is None and the stack is also empty, we are done
+    while stack or curr:
+ 
+        # if the current node exists, push it into the stack (defer it)
+        # and move to its left child
+        if curr:
+            stack.append(curr)
+            curr = curr.left
+        
+        else:
+            # otherwise, if the current node is None, pop an element from the stack,
+            # print it, and finally set the current node to its right child
+            curr = stack.pop()
+            
+            if curr.key==i:
+                select[0]=index
+                select[1]=curr
+            index+=1
+            curr = curr.right
 
-    if node!=None:
+    """ if node!=None:
                       
             OS_Rank(node.left,i)
             index+=1
@@ -128,13 +155,39 @@ def OS_Rank(node,i): #sbagliato , torna il puntatore al valore uguale a i
                 select[0]=index
                 select[1]=node
             OS_Rank(node.right,i)
-
-def OS_Select(node,i): #base 1, non parte da 0
+ """
+def OS_Select(node,i): 
     global index
     global select
     global value
 
-    if node!=None:
+    index=0
+     # create an empty stack
+    stack = deque()
+ 
+    # start from the root node (set current node to the root node)
+    curr = node
+ 
+    # if the current node is None and the stack is also empty, we are done
+    while stack or curr:
+ 
+        # if the current node exists, push it into the stack (defer it)
+        # and move to its left child
+        if curr:
+            stack.append(curr)
+            curr = curr.left
+        
+        else:
+            # otherwise, if the current node is None, pop an element from the stack,
+            # print it, and finally set the current node to its right child
+            curr = stack.pop()
+            
+            if index==i:
+                select[0]=index
+                select[1]=curr
+            index+=1
+            curr = curr.right
+    """ if node!=None:
             
             OS_Select(node.left,i)
             #if value!=node.key:
@@ -144,30 +197,30 @@ def OS_Select(node,i): #base 1, non parte da 0
                 select[0]=index
                 select[1]=node
             
-            OS_Select(node.right,i)
+            OS_Select(node.right,i) """
             
 
-
-# tree=BinaryTree()
+""" 
+tree=BinaryTree()
 # for i in range(6):
 #     num=random.randint(0,10)
 #     tree.insert(num)
-# tree.insert(8)
-# tree.insert(4)
-# tree.insert(8)
-# tree.insert(6)
-# tree.insert(1)
-# tree.insert(6)
-# tree.insert(-4)
-# tree.insert(1)
-# tree.insert(5)
-# tree.insert(90)
-# tree.insert(54)
-# tree.showTreeInorder(tree.elements[0])
+tree.insert(8)
+tree.insert(4)
+tree.insert(8)
+tree.insert(6)
+tree.insert(1)
+tree.insert(6)
+tree.insert(-4)
+tree.insert(1)
+tree.insert(5)
+tree.insert(90)
+tree.insert(54)
+tree.showTreeInorder(tree.elements[0])
 
-# tree.tree_OS_Select(tree.elements[0],3)
-# print('OSselect tree result: '+str(select[1].key))
+tree.tree_OS_Select(tree.elements[0],10)
+print('OSselect tree result: '+str(select[1].key))
 
 
-# tree.tree_OS_Rank(tree.elements[0],1)
-# print('OSrank tree result: '+str(select[0]))
+tree.tree_OS_Rank(tree.elements[0],8)
+print('OSrank tree result: '+str(select[0])) """
