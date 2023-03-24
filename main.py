@@ -9,10 +9,10 @@ testList=[]
 tree=BT.BinaryTree()
 size=0
 
-n_struct_data=15  # creo 15 istanze per ogni struct data   #15
-n_times_plus=20 # numero di volte che aumento la dim di plus_dim  #20
+n_struct_data=10  # creo 15 istanze per ogni struct data   #15
+n_times_plus=15 # numero di volte che aumento la dim di plus_dim  #20
 plus_dim=100 # di quanto aumento la dimensione       #300
-n_mis=15  # misuro 10 volte il tempo di os_select/rank per poi farne la media #30
+n_mis=10  # misuro 10 volte il tempo di os_select/rank per poi farne la media #30
 n_test=3
 
 #dati per numero di esecuzione/dimensione
@@ -45,7 +45,7 @@ def test_OS_Rank(_list,_tree,_RBTree,rL,RT,_RB):
     times.append(end-start)
     #TREE
     start=timer()
-    BT.OS_Rank(_tree.elements[0],RT)
+    BT.OS_Rank(_tree.elements[0],RT.key)
     end=timer()
     times.append(end-start)
     #RB
@@ -55,6 +55,8 @@ def test_OS_Rank(_list,_tree,_RBTree,rL,RT,_RB):
     times.append(end-start)
 
     return times
+
+
 
 def main():
 
@@ -89,6 +91,7 @@ def main():
 
             for new_el in range(current_dim):  #inzializzo e riempio le struct dati con un valore random
                 val=random.randint(-5000,5000)
+                #val=random.randint(0,10)
                 tree.insert(val)
                 RBtree.insert(val)
                 myList.append(val)
@@ -98,8 +101,15 @@ def main():
             randomTreeNode=tree.nodes[ridx]
             randomRBNode=RBtree.nodes[ridx]
             randomList=myList[ridx]
-            ridx=random.randint(1,current_dim-1)
-
+            
+            Min_randomTreeNode=tree.Min(tree.elements[0])
+            Min_randomRBNode=RBtree.Min(RBtree.elements[0])
+            Min_randomList=myList[0]
+            
+            Max_randomTreeNode=tree.Max(tree.elements[0])
+            Max_randomRBNode=RBtree.Max(RBtree.elements[0])
+            Max_randomList=myList[len(myList)-1]  # ultimo elemento della lista
+            
             misList=[]   #salvo i risultati di ogni misurazione cosi' ne faccio la media 
             misTree=[]
             misRB=[]
@@ -112,8 +122,10 @@ def main():
             for k in range(n_mis):
                 
                 # Test Standard
+                #print('\n\nstd_test')
+                #print('SEL')
                 Select_res=test_OS_Select(myList,tree,RBtree,ridx)
-
+                #print('Rank')
                 Rank_res=test_OS_Rank(myList,tree,RBtree,randomList,randomTreeNode,randomRBNode)
 
                 misList.append(Select_res[0])
@@ -124,16 +136,12 @@ def main():
                 misRB.append(Rank_res[2])
 
                 # Test col Minimo
-                randomTreeNode=tree.Min(tree.elements[0])
-                randomRBNode=RBtree.Min(RBtree.elements[0])
-                randomList=myList[0]
-                # print('MIN:')
-                # print(randomTreeNode.key)
-                # print(randomRBNode.key)
-                # print(randomList)
-
+                #print('\nMin_test')
+                
+                #print('SEL')
                 Select_res=test_OS_Select(myList,tree,RBtree,0) #inserisco il primo indice
-                Rank_res=test_OS_Rank(myList,tree,RBtree,randomList,randomTreeNode,randomRBNode)
+                #print('Rank')
+                Rank_res=test_OS_Rank(myList,tree,RBtree,Min_randomList,Min_randomTreeNode,Min_randomRBNode)
 
                 misList.append(Select_res[0])
                 misList.append(Rank_res[0])
@@ -143,16 +151,12 @@ def main():
                 misRB.append(Rank_res[2])
 
                 # Test col Max
-                randomTreeNode=tree.Max(tree.elements[0])
-                randomRBNode=RBtree.Max(RBtree.elements[0])
-                randomList=myList[len(myList)-1]  # ultimo elemento della lista
-                # print('MAX:')
-                # print(randomTreeNode.key)
-                # print(randomRBNode.key)
-                # print(randomList)
-
+                #print('\nMax_test')
+                
+                #print('SEL')
                 Select_res=test_OS_Select(myList,tree,RBtree,len(myList)-1) #ultimo indice
-                Rank_res=test_OS_Rank(myList,tree,RBtree,randomList,randomTreeNode,randomRBNode)
+                #print('Rank')
+                Rank_res=test_OS_Rank(myList,tree,RBtree,Max_randomList,Max_randomTreeNode,Max_randomRBNode)
                 
 
                 misList.append(Select_res[0])
@@ -162,7 +166,6 @@ def main():
                 misRB.append(Select_res[2])
                 misRB.append(Rank_res[2])
 
-            # print('calcoli fatti')
 
             #finito questo ciclo avrò i n_mis tentativi dei risultati dai quali otterrò la media
             midList=get_mid_result(misList,n_mis,n_test)

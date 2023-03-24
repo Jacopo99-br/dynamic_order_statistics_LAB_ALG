@@ -3,9 +3,9 @@ from collections import deque
 
 
 #GLOBAL
-index=0
+""" index=0
 select=[None,None]
-value=None
+value=None """
 
 class Node():
     def __init__(self,key=None,left=None,right=None,parent=None):
@@ -28,7 +28,6 @@ class Node():
 class BinaryTree():
 
     elements=[None]
-    list_key=[]
     nodes=[]
     
     # def insert(self,z_key):
@@ -97,15 +96,15 @@ class BinaryTree():
             start=start.right
         return start
     
-    def tree_OS_Select(self,tree,i):
-        global index
-        index=0
-        OS_Select(tree,i)
+    def tree_OS_Select(self,i):
+        #global index
+        #index=0
+        OS_Select(self.elements[0],i)
 
-    def tree_OS_Rank(self,tree,i):
-        global index
-        index=0
-        OS_Rank(tree,i)
+    def tree_OS_Rank(self,i):
+        #global index
+        #index=0
+        OS_Rank(self.elements[0],i)
 
     def tree_key_list(self,start):
         if start!=None:
@@ -116,9 +115,9 @@ class BinaryTree():
     
 
 def OS_Rank(node,i): 
-    global index
+    """ global index
     global select
-    global value
+    global value """
     index=0
      # create an empty stack
     stack = deque()
@@ -141,27 +140,31 @@ def OS_Rank(node,i):
             curr = stack.pop()
             
             if curr.key==i:
-                select[0]=index
-                select[1]=curr
+                #select[0]=index
+                #select[1]=curr
+                #print('B-Tree: '+str(index))
                 return
             index+=1
             curr = curr.right
 
     """ if node!=None:
                       
-            OS_Rank(node.left,i)
-            index+=1
-            value=node.key
-            if i==node.key:
-                select[0]=index
-                select[1]=node
-            OS_Rank(node.right,i)
- """
+        OS_Rank(node.left,i)
+        index+=1
+        value=node.key
+        if i.key==node.key:
+            select[0]=index
+            select[1]=node
+            print(index)
+            index=0
+        OS_Rank(node.right,i) """
+        
 def OS_Select(node,i): 
-    global index
+    """ global index
     global select
-    global value
-
+    global value """
+    
+    
     index=0
      # create an empty stack
     stack = deque()
@@ -184,22 +187,27 @@ def OS_Select(node,i):
             curr = stack.pop()
             
             if index==i:
-                select[0]=index
-                select[1]=curr
+                #select[0]=index
+                #select[1]=curr
+                
+                #print('B-Tree: '+str(curr.key))
                 return
             index+=1
-            curr = curr.right
+            curr = curr.right 
+            
     """ if node!=None:
             
-            OS_Select(node.left,i)
-            #if value!=node.key:
-            index+=1
-            value=node.key
-            if i==index:
-                select[0]=index
-                select[1]=node
-            
-            OS_Select(node.right,i) """
+        OS_Select(node.left,i)
+        #if value!=node.key:
+        index+=1
+        value=node.key
+        if i==index:
+            select[0]=index
+            select[1]=node
+            print(node.key)
+            index=0
+        
+        OS_Select(node.right,i)  """
             
 
 """ 
@@ -214,15 +222,14 @@ tree.insert(6)
 tree.insert(1)
 tree.insert(6)
 tree.insert(-4)
-tree.insert(1)
+tree.insert(-1)
 tree.insert(5)
 tree.insert(90)
 tree.insert(54)
+
+print(tree.elements[0].left.key)
+print()
 tree.showTreeInorder(tree.elements[0])
+tree.tree_OS_Select(3)
 
-tree.tree_OS_Select(tree.elements[0],10)
-print('OSselect tree result: '+str(select[1].key))
-
-
-tree.tree_OS_Rank(tree.elements[0],8)
-print('OSrank tree result: '+str(select[0])) """
+tree.tree_OS_Rank(6) """

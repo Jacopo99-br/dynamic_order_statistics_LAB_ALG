@@ -168,13 +168,14 @@ class RBtree():
 def OS_SelectRB(x, i):
     if x == Node(color=Color.black,size=0):
         return None
-    r = x.left.size + 1
-    if i == r:
+    l = x.left.size + 1
+    if i == l:
+        #print('RB  :'+str(x.key))
         return 
-    elif i < r:
+    elif i < l:
         return OS_SelectRB(x.left, i)
     else:
-        return OS_SelectRB(x.right, i - r)
+        return OS_SelectRB(x.right, i - l)
 
 def OS_RankRB(tree,x):
     r = x.left.size + 1
@@ -183,33 +184,35 @@ def OS_RankRB(tree,x):
         if y == y.parent.right:
             r = r + y.parent.left.size + 1
         y = y.parent
+    #print('RB  :'+str(r-1))
     return 
     
 
 
 
-# tree=RBtree()
-# # for i in range(6):
-# #     num=random.randint(0,10)
-# #     tree.insert(num)
-# tree.insert(8)
-# tree.insert(4)
-# tree.insert(8)
-# tree.insert(6)
-# tree.insert(1)
-# tree.insert(6)
-# tree.insert(-4)
-# tree.insert(1)
-# tree.insert(5)
-# tree.insert(90)
-# tree.insert(54)
+""" tree=RBtree() 
 
-# print(tree.printTree(tree.elements[0]))
-# print('\nOS Select RB:')
-# print(OS_SelectRB(tree.elements[0],7).key)  # non fa come il mio che guarda i numeri singoli e non le coppie, qui si contano amche le coppie 
+tree.insert(8)
+tree.insert(4)
+tree.insert(8)
+tree.insert(6)
+tree.insert(1)
+tree.insert(6)
+tree.insert(-4)
+tree.insert(-1)
+tree.insert(5)
+tree.insert(90)
+tree.insert(54)
 
+print(tree.printTree(tree.elements[0]))
+print('\nOS Select RB:')
+OS_SelectRB(tree.elements[0],5)
+max_=tree.Max(tree.elements[0])
+print('MAX:: '+str(max_.key))
+print('\nOS Rank RB:')  
+OS_RankRB(tree,max_)
 
-# Guarda come matte prende il valore da passare ad os_rank
-
-# print('\nOS Rank RB:')  
-# print(OS_RankRB(tree.elements[0]))
+min_=tree.Min(tree.elements[0])
+print('MIN:: '+str(min_.key))
+print('\nOS Rank RB:')  
+OS_RankRB(tree,min_) """

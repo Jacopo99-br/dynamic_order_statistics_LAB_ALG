@@ -42,18 +42,21 @@ def list_merge_sorting(arr):
 
 # funzioni da eseguire dopo che ho ordinato la lista
 def OS_Select_list(arr,i):
-    index=0
+    idx=0
     for value in arr:
-        index+=1
-        if i==index:
+        if i==idx:
+            #print('List: '+str(value))
             return
+        idx+=1
         
 def OS_Rank_list(arr,target):
-    index=0
+    idx=0
     for value in arr:
-        index+=1
+        
         if target==value:
+            #print('List: '+str(idx))
             return 
+        idx+=1
 
 
 
